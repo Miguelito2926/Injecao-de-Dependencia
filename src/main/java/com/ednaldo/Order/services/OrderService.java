@@ -14,6 +14,11 @@ public class OrderService {
 
     public Double total(Order order) {
 
-        return order.getBasic() - order.getDiscount();
+        double basic = order.getBasic();
+        double discount = order.getDiscount();
+        double discountedValue = basic - (basic * discount / 100.0);
+        double freight = shippingService.shippment(order);
+
+        return discountedValue + freight;
     }
 }

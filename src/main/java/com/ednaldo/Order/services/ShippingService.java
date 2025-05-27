@@ -1,19 +1,21 @@
 package com.ednaldo.Order.services;
 
 import com.ednaldo.Order.entities.Order;
+import org.springframework.stereotype.Service;
 
+@Service
 public class ShippingService {
 
     public Double shippment(Order order) {
 
-       if (order.getBasic() < 100.0){
+        double basic = order.getBasic();
 
-          return order.getCode() + 20.0;
-
-       } else if (order.getBasic() >= 100.0 && order.getBasic() < 200.0) {
-           return order.getBasic() + 12.0;
-       }else {
-           return order.getBasic();
-       }
+        if (basic < 100.0) {
+            return 20.0;
+        } else if (basic < 200.0) {
+            return 12.0;
+        } else {
+            return 0.0;
+        }
     }
 }
